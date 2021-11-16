@@ -4,7 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList; 
 import java.util.Scanner;
-
+//C:\Users\Matthew Caruso\Documents\rwu\COMSC330\COMSC-330-Project\textFiles
 public class gpaReader 
 {
     //global variables
@@ -17,7 +17,7 @@ public class gpaReader
     {  
         Scanner scan = new Scanner(System.in);
        
-        System.out.println("enter a DIR");
+        System.out.println("enter the path that contains all the .txt files");
         String direc = scan.nextLine();
 
        
@@ -39,7 +39,7 @@ public class gpaReader
             {
                 BufferedReader inputStream = null;
                  
-                ArrayList<Double> name1 = new ArrayList<Double>();
+                
                
                 char h;
            
@@ -49,18 +49,10 @@ public class gpaReader
                     while ((line = inputStream.readLine()) != null) 
                     {
                      h = line.charAt(line.length()-1);  // sets h to last char in line
-                     if(h == 'A' || h == 'B' || h == 'C' || h == 'D' || h == 'F')//refactor thris through line 52
+                     if(h == 'A' || h == 'B' || h == 'C' || h == 'D' || h == 'F' || h == '+' || h == '-')//refactor thris through line 52
                      {
                          switches(h); 
                          
-                     }
-                     else if(h == '+')
-                     {
-                        switches(h);
-                     }
-                     else if (h == '-')
-                     {
-                        switches(h);
                      }
                       
                     }
@@ -171,14 +163,16 @@ public class gpaReader
 
     public static void printData()
     {
-              
-        System.out.println("list 1 avg GPA = " + getSum(0) / 23);
-        System.out.println("list 2 avg GPA = " + getSum(1) / 23);
-        System.out.println("list 3 avg GPA = " + getSum(2) / 15);
-        System.out.println("list 4 avg GPA = " + getSum(3) / 21);
-        System.out.println("list 5 avg GPA = " + getSum(4) / 9);
-        System.out.println("list 6 avg GPA = " + getSum(5) / 10);
-        System.out.println("list 7 avg GPA = " + getSum(6) / 10);
+        System.out.println("");     
+        System.out.println("COMSC234_01 avg GPA = " + getSum(0) / 23);
+        System.out.println("COMSC330_01 avg GPA = " + getSum(1) / 23);
+        System.out.println("COMSC330_2 avg GPA = " + getSum(2) / 15);
+        System.out.println("COMSC335_01 avg GPA = " + getSum(3) / 21);
+        System.out.println("COMSC450_01 avg GPA = " + getSum(4) / 9);
+        System.out.println("COMSC490_01 avg GPA = " + getSum(5) / 10);
+        System.out.println("COMSC492_1 avg GPA = " + getSum(6) / 10);
+        
+        System.out.println("");
 
         System.out.println("GRP 330 avg GPA = " + ((getSum(1) / 23) + (getSum(2) / 15)) / 2);
         System.out.println("GRP Senior_Design avg GPA = " + ((getSum(5) / 23) + (getSum(6) / 15)) / 2);
