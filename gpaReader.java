@@ -12,7 +12,7 @@ public class gpaReader
     public static int temp1;
     public static String line ="hello";//placeholder
     public static int counter = 0;
-    public static  ArrayList<Double> lists[]=new ArrayList[7];
+    public static  ArrayList<Double> lists[]=new ArrayList[8];
     public static void main(String[] args) throws IOException
     {  
         Scanner scan = new Scanner(System.in);
@@ -22,7 +22,7 @@ public class gpaReader
 
        
             //creats # of array lists based on # of SEC files
-            for(int i=0;i<7;i++)
+            for(int i=0;i<8;i++)
             {
             lists[i]=new ArrayList<>();
             }
@@ -163,20 +163,24 @@ public class gpaReader
 
     public static void printData()
     {
+        System.out.println("");  
+        System.out.println("COMSC335_01's numerical grades are: " + lists[3]);  
         System.out.println("");     
-        System.out.println("COMSC234_01 avg GPA = " + getSum(0) / 23);
-        System.out.println("COMSC330_01 avg GPA = " + getSum(1) / 23);
-        System.out.println("COMSC330_2 avg GPA = " + getSum(2) / 15);
-        System.out.println("COMSC335_01 avg GPA = " + getSum(3) / 21);
-        System.out.println("COMSC450_01 avg GPA = " + getSum(4) / 9);
-        System.out.println("COMSC490_01 avg GPA = " + getSum(5) / 10);
-        System.out.println("COMSC492_1 avg GPA = " + getSum(6) / 10);
+        System.out.println("COMSC234_01 avg GPA = " + getAverage(0));
+        System.out.println("COMSC330_01 avg GPA = " + getAverage(1));
+        System.out.println("COMSC330_2 avg GPA = " + getAverage(2));
+        System.out.println("COMSC335_01 avg GPA = " + getAverage(3));
+        System.out.println("COMSC450_01 avg GPA = " + getAverage(4));
+        System.out.println("COMSC490_01 avg GPA = " + getAverage(5));
+        System.out.println("COMSC492_1 avg GPA = " + getAverage(6));
         
         System.out.println("");
 
-        System.out.println("GRP 330 avg GPA = " + ((getSum(1) / 23) + (getSum(2) / 15)) / 2);
-        System.out.println("GRP Senior_Design avg GPA = " + ((getSum(5) / 23) + (getSum(6) / 15)) / 2);
-        System.out.println("GRP COMSC avg GPA = " + (((getSum(0) / 23) + (getSum(1) / 23)+ (getSum(2) / 15)) + (getSum(3) / 21) + (getSum(4) / 9) + (getSum(5) / 10) + (getSum(6) / 10)) / 7);
+        System.out.println(getSTDV(3));
+
+        //System.out.println("GRP 330 avg GPA = " + ((getSum(1) / 23) + (getSum(2) / 15)) / 2);
+        //System.out.println("GRP Senior_Design avg GPA = " + ((getSum(5) / 23) + (getSum(6) / 15)) / 2);
+        //System.out.println("GRP COMSC avg GPA = " + (((getSum(0) / 23) + (getSum(1) / 23)+ (getSum(2) / 15)) + (getSum(3) / 21) + (getSum(4) / 9) + (getSum(5) / 10) + (getSum(6) / 10)) / 7);
     }
 
     public static double getSum(int listNum)//gets sum of all elements in a specific arraylist
@@ -184,8 +188,30 @@ public class gpaReader
                 double sum = 0;
                 for(int i = 0; i < lists[listNum].size(); i++)
                 sum += lists[listNum].get(i);
-
                 return sum;
     }
 
-}
+    public static double getAverage(int listNum)//gets average of specific arraylist
+    {
+        return(getSum(listNum) / lists[listNum].size());
+    }
+
+   // public static double getZScore(int listNum, int listNum2)
+    //{
+
+    //}
+
+    public static double getSTDV(int listNum)
+    {
+        double mean= getAverage(listNum);
+        double temp =0;
+        for ( int i= 0; i < lists[listNum].size(); i++)
+        {
+            temp= Math.pow(i-mean, 2);
+        }
+
+        return Math.sqrt(getAverage(listNum));
+    }
+    }
+
+
