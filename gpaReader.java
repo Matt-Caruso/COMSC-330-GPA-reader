@@ -4,7 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList; 
 import java.util.Scanner;
-//C:\Users\Matthew Caruso\Documents\rwu\COMSC330\COMSC-330-Project\textFiles
+////C:\Users\Matthew Caruso\Documents\rwu\COMSC330\COMSC-330-Project\textFiles
 public class gpaReader 
 {
     //global variables
@@ -12,7 +12,7 @@ public class gpaReader
     public static int temp1;
     public static String line ="hello";//placeholder
     public static int counter = 0;
-    public static  ArrayList<Double> lists[]=new ArrayList[8];
+    public static  ArrayList<Double> lists[]=new ArrayList[15];
     public static void main(String[] args) throws IOException
     {  
         Scanner scan = new Scanner(System.in);
@@ -35,12 +35,14 @@ public class gpaReader
         
         for (File file : files) //loops through all files in folder
         {
-            if(file.isFile()) //if file is in directory and is a file
+            String temp3 ="";
+            temp3 = getFileName(file);
+            if(file.isFile() && (temp3.endsWith("SEC") || temp3.endsWith("sec"))) //if file is in directory and is a file
             {
                 BufferedReader inputStream = null;
                  
                 
-               
+                
                 char h;
            
                 try
@@ -71,10 +73,7 @@ public class gpaReader
                 
                 counter++;//var used to itterate though different sec arrays
                 
-                //for (double i : list) 
-                //{
-                    //System.out.println(i);
-                  //}
+                
             }
         }
 
@@ -177,10 +176,10 @@ public class gpaReader
         System.out.println("");
 
         System.out.println(getSTDV(3));
+        
+        
 
-        //System.out.println("GRP 330 avg GPA = " + ((getSum(1) / 23) + (getSum(2) / 15)) / 2);
-        //System.out.println("GRP Senior_Design avg GPA = " + ((getSum(5) / 23) + (getSum(6) / 15)) / 2);
-        //System.out.println("GRP COMSC avg GPA = " + (((getSum(0) / 23) + (getSum(1) / 23)+ (getSum(2) / 15)) + (getSum(3) / 21) + (getSum(4) / 9) + (getSum(5) / 10) + (getSum(6) / 10)) / 7);
+        
     }
 
     public static double getSum(int listNum)//gets sum of all elements in a specific arraylist
@@ -203,15 +202,27 @@ public class gpaReader
 
     public static double getSTDV(int listNum)
     {
-        double mean= getAverage(listNum);
-        double temp =0;
-        for ( int i= 0; i < lists[listNum].size(); i++)
-        {
-            temp= Math.pow(i-mean, 2);
+        double sum = 0.0, standardDeviation = 0.0;
+        int length = lists[listNum].size();
+
+        for(double num : lists[listNum]) {
+            sum += num;
         }
 
-        return Math.sqrt(getAverage(listNum));
-    }
+        double mean = sum/length;
+
+        for(double num: lists[listNum]) {
+            standardDeviation += Math.pow(num - mean, 2);
+        }
+
+        return Math.sqrt(standardDeviation/length);
+    
     }
 
-
+    public static String getFileName(File file)
+    {
+        return file.getName();
+    }
+        
+           
+    }
