@@ -77,22 +77,6 @@ input[type=submit]:hover {
   <form action="/action_page.php">
     <div class="row">
       <div class="col-25">
-        <label for="fname">First Name</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="fname" name="firstname" placeholder="Your name..">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="lname">Last Name</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
         <label for="country">Section</label>
       </div>
       <div class="col-75">
@@ -107,6 +91,22 @@ input[type=submit]:hover {
         </select>
       </div>
     </div>
+    <div class="row">
+        <div class="col-25">
+          <label for="country">Section</label>
+        </div>
+        <div class="col-75">
+          <select id="Select a Section" name="Select a Section">
+            <option value="COMSC234_01">COMSC234_01</option>
+            <option value="COMSC330_01">COMSC330_01</option>
+            <option value="COMSC330_2">COMSC330_2</option>
+            <option value="COMSC335_01">COMSC335_01</option>
+            <option value="COMSC450_01">COMSC450_01</option>
+            <option value="COMSC490_01">COMSC490_01</option>
+            <option value="COMSC492_1">COMSC492_1</option>
+          </select>
+        </div>
+      </div>
     <div class="row">
       <input type="submit" value="Calculate">
     </div>
