@@ -176,6 +176,7 @@ public class gpaReader
         System.out.println("");
 
         System.out.println(getSTDV(3));
+        System.out.println(getZScore(3));
         
         
 
@@ -195,10 +196,10 @@ public class gpaReader
         return(getSum(listNum) / lists[listNum].size());
     }
 
-   // public static double getZScore(int listNum, int listNum2)
-    //{
-
-    //}
+    public static double getZScore(int listNum)
+    {
+            return((getSum(listNum) - getAverage(listNum)) / getSTDV(listNum));
+    }
 
     public static double getSTDV(int listNum)
     {
